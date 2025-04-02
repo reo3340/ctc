@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>區域點亮示範</title>
+    <style>
+        .map-container {
+            position: relative;
+            width: 800px; /* 調整成你的圖片大小 */
+            height: 500px;
+            background: url('https://drive.google.com/uc?id=1a9bx6CQhKkn0i_WrcH_K9-zJpJMaQElk') no-repeat center center;
+            background-size: contain;
+            border: 2px solid black;
+        }
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .area {
+            fill: rgba(128, 128, 128, 0.7); /* 初始灰色半透明 */
+            stroke: black;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: fill 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>區域點亮範例</h2>
+    <div class="map-container">
+        <svg viewBox="0 0 800 500">
+            <!-- 這些是示範的區塊，你需要根據你的平面圖調整位置 -->
+            <polygon class="area" id="zone1" points="100,100 200,100 200,200 100,200" data-color="blue"/>
+            <polygon class="area" id="zone2" points="300,100 400,100 400,200 300,200" data-color="green"/>
+            <polygon class="area" id="zone3" points="500,100 600,100 600,200 500,200" data-color="red"/>
+        </svg>
+    </div>
+
+    <script>
+        document.querySelectorAll('.area').forEach(area => {
+            area.addEventListener('click', function() {
+                this.setAttribute('fill', this.getAttribute('data-color'));
+            });
+        });
+    </script>
+
+</body>
+</html>
